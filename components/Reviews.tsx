@@ -45,13 +45,29 @@ const reviews = [
 export default function Reviews() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [cardsToShow, setCardsToShow] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setCardsToShow(1);
+      } else {
+        setCardsToShow(3);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const maxIndex = Math.max(0, reviews.length - cardsToShow);
 
   const nextSlide = () => {
-    setActiveIndex((prev) => (prev + 1) % reviews.length);
+    setActiveIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   };
 
   const prevSlide = () => {
-    setActiveIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
+    setActiveIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
   };
 
   useEffect(() => {
@@ -60,7 +76,7 @@ export default function Reviews() {
       nextSlide();
     }, 4000);
     return () => clearInterval(timer);
-  }, [isPaused]);
+  }, [isPaused, maxIndex]);
 
   return (
     <section className="bg-paper py-20 lg:py-24 border-t border-ink/10 overflow-hidden">
@@ -96,7 +112,7 @@ export default function Reviews() {
             <div
               className="flex transition-transform duration-500 ease-out-soft"
               style={{
-                transform: `translateX(-${activeIndex * 100}% )`,
+                transform: `translateX(-${activeIndex * (100 / cardsToShow)}%)`,
               }}
             >
               {reviews.map((r) => (
@@ -141,7 +157,7 @@ export default function Reviews() {
 
             {/* Dots */}
             <div className="flex items-center gap-2">
-              {reviews.map((_, idx) => (
+              {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveIndex(idx)}
