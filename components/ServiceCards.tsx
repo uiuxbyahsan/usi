@@ -75,16 +75,16 @@ export default function ServiceCards() {
 
           {/* Highlighted amber card — the single deliberately bold card */}
           <Reveal delay={0.24}>
-            <article className="flex h-full flex-col rounded-[8px] bg-signal p-7 text-ink">
-              <h3 className="font-display text-[24px] font-medium leading-tight">
+            <article className="flex h-full flex-col rounded-[8px] bg-signal p-7 text-white">
+              <h3 className="font-display text-[24px] font-medium leading-tight text-white">
                 Not sure where to start?
               </h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-ink/85">
+              <p className="mt-3 text-[15px] leading-relaxed text-white/90">
                 Retirement Consulting, Programs, and Benefits Wholesale are also
                 part of the USI ONE Advantage.
               </p>
               <div className="mt-auto pt-6">
-                <a href="#services" className="btn-dark">
+                <a href="#services" className="btn-dark text-white">
                   See All Services
                 </a>
               </div>
