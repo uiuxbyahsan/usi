@@ -47,10 +47,7 @@ export default function ServiceCards() {
           {cards.map((c, i) => (
             <Reveal key={c.title} delay={i * 0.08}>
               <article className="flex h-full flex-col rounded-[8px] border border-ink/10 bg-white p-7 transition-shadow duration-300 hover:shadow-lg">
-                <span className="flex h-11 w-11 items-center justify-center rounded-[8px] bg-ink text-paper">
-                  <c.icon width={22} height={22} />
-                </span>
-                <h3 className="mt-6 font-display text-[22px] font-medium text-ink">
+                <h3 className="font-display text-[22px] font-medium text-ink">
                   {c.title}
                 </h3>
                 <p className="mt-2 text-[15px] leading-relaxed text-ash">{c.desc}</p>

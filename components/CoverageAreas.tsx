@@ -49,10 +49,7 @@ export default function CoverageAreas() {
           <ul className="mt-9 space-y-1">
             {areas.map((a) => (
               <li key={a.name}>
-                <div className="flex items-center gap-3 border-l-2 border-paper/15 py-3 pl-4 pr-3 text-[17px] text-paper">
-                  <span className="text-signal">
-                    <a.icon width={18} height={18} />
-                  </span>
+                <div className="border-l-2 border-paper/15 py-3 pl-4 pr-3 text-[17px] text-paper">
                   {a.name}
                 </div>
               </li>
@@ -78,18 +75,13 @@ export default function CoverageAreas() {
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
               </div>
               {/* frosted transparent glass anchored to bottom (Section 2 spec) */}
-              <div className="glass-card absolute inset-x-0 bottom-0 flex items-center gap-4 rounded-b-[8px] p-5">
-                <span className="flex h-10 w-10 flex-none items-center justify-center rounded-[8px] bg-paper/10 text-signal">
-                  <a.icon width={20} height={20} />
-                </span>
-                <div>
-                  <h3 className="font-display text-[22px] font-medium text-paper">
-                    {a.name}
-                  </h3>
-                  <p className="mt-1 text-[14px] leading-snug text-paper/85">
-                    {a.desc}
-                  </p>
-                </div>
+              <div className="glass-card absolute inset-x-0 bottom-0 rounded-b-[8px] p-5">
+                <h3 className="font-display text-[22px] font-medium text-paper">
+                  {a.name}
+                </h3>
+                <p className="mt-1 text-[14px] leading-snug text-paper/85">
+                  {a.desc}
+                </p>
               </div>
             </div>
           ))}
