@@ -132,7 +132,7 @@ export default function Reviews() {
             <button
               onClick={prevSlide}
               aria-label="Previous review"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-white text-ink transition-colors hover:border-signal hover:text-signal"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/20 bg-transparent text-ink transition-colors hover:border-signal hover:text-signal"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M15 18l-6-6 6-6" />
@@ -158,7 +158,7 @@ export default function Reviews() {
             <button
               onClick={nextSlide}
               aria-label="Next review"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-white text-ink transition-colors hover:border-signal hover:text-signal"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/20 bg-transparent text-ink transition-colors hover:border-signal hover:text-signal"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M9 18l6-6-6-6" />
