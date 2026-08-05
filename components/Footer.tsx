@@ -89,7 +89,7 @@ export default function Footer() {
             © {new Date().getFullYear()} USI Insurance Services. All rights reserved.
             {' '}
             <span className="text-paper/35">
-              Concept redesign — not affiliated with USI.
+              Concept redesign (not affiliated with USI).
             </span>
           </p>
 

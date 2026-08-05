@@ -25,7 +25,7 @@ export default function PathPlatform() {
               </h2>
               <p className="mt-5 text-[17px] leading-relaxed text-paper/80">
                 From identifying sources of loss to targeting the solutions that
-                maximize return on investment &mdash; PATH turns your risk data
+                maximize return on investment. PATH turns your risk data
                 into a clear, actionable plan.
               </p>
               <a href="#contact" className="btn-amber mt-8 text-white">

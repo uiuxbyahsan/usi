@@ -41,7 +41,7 @@ export default function StatStrip() {
 
         <Reveal delay={0.1}>
           <p className="mx-auto mt-14 max-w-2xl text-center text-[15px] italic leading-relaxed text-ash">
-            USI stands for Understand, Service, and Innovate &mdash; the three
+            USI stands for Understand, Service, and Innovate: the three
             commitments behind every client relationship.
           </p>
         </Reveal>

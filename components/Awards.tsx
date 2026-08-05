@@ -24,7 +24,7 @@ export default function Awards() {
           <div className="mx-auto max-w-2xl text-center">
             <p className="eyebrow text-signal">Recognition &amp; Awards</p>
             <h2 className="mt-4 font-display text-[28px] font-normal leading-tight text-ink sm:text-display-sm">
-              Recognized for the work &mdash; and the workplace
+              Recognized for the work and the workplace
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[16px] leading-relaxed text-ash">
               National honors for the strategy we deliver and the culture behind it.

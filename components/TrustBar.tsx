@@ -17,7 +17,7 @@ export default function TrustBar() {
               ))}
             </span>
             <span className="text-[13px] font-medium text-paper/80">
-              4.8 &mdash; 200+ Reviews
+              4.8 (200+ Reviews)
             </span>
           </div>
         </div>
