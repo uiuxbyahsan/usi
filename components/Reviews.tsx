@@ -1,3 +1,6 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Reveal from './Reveal';
 import { Star } from './icons';
 
@@ -23,11 +26,44 @@ const reviews = [
     role: 'Chief Executive Officer, Horizon Manufacturing',
     rating: 5,
   },
+  {
+    quote:
+      'The risk control playbooks and claims advocacy delivered by USI saved our team hundreds of hours during complex underwriting reviews.',
+    author: 'Elena Rostova',
+    role: 'Managing Director, BluePeak Capital',
+    rating: 5,
+  },
+  {
+    quote:
+      'From property risk modeling to employee health strategies, USI consistently delivers data-driven insights that directly impact our bottom line.',
+    author: 'Marcus Thorne',
+    role: 'Chief Operating Officer, Summit Infrastructure',
+    rating: 5,
+  },
 ];
 
 export default function Reviews() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const nextSlide = () => {
+    setActiveIndex((prev) => (prev + 1) % reviews.length);
+  };
+
+  const prevSlide = () => {
+    setActiveIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
+  };
+
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [isPaused]);
+
   return (
-    <section className="bg-paper py-20 lg:py-24 border-t border-ink/10">
+    <section className="bg-paper py-20 lg:py-24 border-t border-ink/10 overflow-hidden">
       <div className="shell">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
@@ -50,29 +86,85 @@ export default function Reviews() {
           </div>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {reviews.map((r, i) => (
-            <Reveal key={r.author} delay={i * 0.08}>
-              <div className="flex h-full flex-col justify-between rounded-[8px] border border-ink/10 bg-white p-7 shadow-sm transition-shadow duration-300 hover:shadow-md">
-                <div>
-                  <div className="flex items-center gap-0.5 text-signal">
-                    {Array.from({ length: r.rating }).map((_, idx) => (
-                      <Star key={idx} width={15} height={15} />
-                    ))}
+        {/* Carousel container */}
+        <div
+          className="relative mt-12"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <div className="overflow-hidden py-4 px-2">
+            <div
+              className="flex transition-transform duration-500 ease-out-soft"
+              style={{
+                transform: `translateX(-${activeIndex * 100}% )`,
+              }}
+            >
+              {reviews.map((r) => (
+                <div
+                  key={r.author}
+                  className="w-full flex-none px-3 md:w-1/3"
+                >
+                  <div className="flex h-full flex-col justify-between rounded-[8px] border border-ink/10 bg-white p-7 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                    <div>
+                      <div className="flex items-center gap-0.5 text-signal">
+                        {Array.from({ length: r.rating }).map((_, idx) => (
+                          <Star key={idx} width={15} height={15} />
+                        ))}
+                      </div>
+                      <p className="mt-4 text-[15px] leading-relaxed text-ink/90 italic">
+                        &ldquo;{r.quote}&rdquo;
+                      </p>
+                    </div>
+                    <div className="mt-6 border-t border-ink/8 pt-4">
+                      <div className="font-display text-[15px] font-semibold text-ink">
+                        {r.author}
+                      </div>
+                      <div className="text-[13px] text-ash">{r.role}</div>
+                    </div>
                   </div>
-                  <p className="mt-4 text-[15px] leading-relaxed text-ink/90 italic">
-                    &ldquo;{r.quote}&rdquo;
-                  </p>
                 </div>
-                <div className="mt-6 border-t border-ink/8 pt-4">
-                  <div className="font-display text-[15px] font-semibold text-ink">
-                    {r.author}
-                  </div>
-                  <div className="text-[13px] text-ash">{r.role}</div>
-                </div>
-              </div>
-            </Reveal>
-          ))}
+              ))}
+            </div>
+          </div>
+
+          {/* Nav Controls & Dots */}
+          <div className="mt-8 flex items-center justify-center gap-4">
+            <button
+              onClick={prevSlide}
+              aria-label="Previous review"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-white text-ink transition-colors hover:border-signal hover:text-signal"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+
+            {/* Dots */}
+            <div className="flex items-center gap-2">
+              {reviews.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveIndex(idx)}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                    activeIndex === idx
+                      ? 'w-7 bg-signal'
+                      : 'w-2.5 bg-ink/20 hover:bg-ink/40'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={nextSlide}
+              aria-label="Next review"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-white text-ink transition-colors hover:border-signal hover:text-signal"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </section>
