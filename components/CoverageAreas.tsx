@@ -49,7 +49,10 @@ export default function CoverageAreas() {
           <ul className="mt-9 space-y-1">
             {areas.map((a) => (
               <li key={a.name}>
-                <div className="border-l-2 border-paper/15 py-3 pl-4 pr-3 text-[17px] text-paper">
+                <div className="flex items-center gap-3 border-l-2 border-paper/15 py-3 pl-4 pr-3 text-[17px] text-paper">
+                  <span className="text-signal">
+                    <a.icon width={18} height={18} />
+                  </span>
                   {a.name}
                 </div>
               </li>
