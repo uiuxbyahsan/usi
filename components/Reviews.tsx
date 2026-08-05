@@ -67,7 +67,7 @@ export default function Reviews() {
       <div className="shell">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <div className="inline-flex items-center gap-2.5 rounded-full border border-ink/12 bg-white px-4 py-1.5 shadow-sm">
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-ink/15 bg-transparent px-4 py-1.5">
               <span className="flex items-center gap-0.5 text-signal">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} width={14} height={14} />
