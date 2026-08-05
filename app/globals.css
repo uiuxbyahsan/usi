@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #01519b;
+  --depth: #013f79;
+  --signal: #FFA500;
+  --insight: #1F9E8C;
+  --paper: #F7F5F0;
+  --ash: #5A6478;
+  --white: #FFFFFF;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-6 sm:px-8 lg:px-10;
+  }
+
+  .eyebrow {
+    @apply text-[13px] font-medium uppercase tracking-eyebrow;
+  }
+
+  /* Signature frosted glass — reserved for Coverage Areas (Section 3.8) only.
+     Neutral + transparent so the photo reads through as real glass, not a blue panel. */
+  .glass-card {
+    background: rgba(12, 24, 42, 0.30);
+    -webkit-backdrop-filter: blur(20px) saturate(115%);
+    backdrop-filter: blur(20px) saturate(115%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+
+  .btn-amber {
+    @apply inline-flex items-center justify-center gap-2 rounded-[4px] bg-signal px-6 py-3 text-[15px] font-medium text-white transition-transform duration-200 ease-out-soft hover:-translate-y-0.5;
+  }
+
+  .btn-dark {
+    @apply inline-flex items-center justify-center gap-2 rounded-[4px] bg-ink px-6 py-3 text-[15px] font-medium text-paper transition-transform duration-200 ease-out-soft hover:-translate-y-0.5;
+  }
+
+  .link-text {
+    @apply inline-flex items-center gap-1.5 text-[15px] font-medium transition-colors;
+  }
+}
+
+/* Editorial photo placeholders — layered duotone treatment standing in for
+   real editorial photography (site inspections, boardroom reviews, etc.) */
+.editorial {
+  position: relative;
+  background-color: var(--depth);
+  overflow: hidden;
+}
+.editorial::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 90% at 80% 15%, rgba(31, 158, 140, 0.28), transparent 55%),
+    radial-gradient(130% 100% at 15% 85%, rgba(232, 135, 58, 0.20), transparent 55%),
+    linear-gradient(140deg, #013f79 0%, #01519b 55%, #0a63b0 100%);
+}
+.editorial::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.dotgrid {
+  background-image: radial-gradient(rgba(247, 245, 240, 0.14) 1px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
